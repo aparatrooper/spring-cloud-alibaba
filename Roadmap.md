@@ -1,6 +1,6 @@
 # Roadmap
 
-See the [中文文档](https://github.com/spring-cloud-incubator/spring-cloud-alibabacloud/blob/master/Roadmap-zh.md) for Chinese Roadmap.
+See the [中文文档](https://github.com/alibaba/spring-cloud-alibaba/blob/master/Roadmap-zh.md) for Chinese Roadmap.
 
 
 Spring Cloud Alibaba provides a one-stop solution for distributed application development. It contains all the components required to develop distributed applications, making it easy for you to develop your applications using Spring Cloud.
@@ -24,6 +24,14 @@ An opensource project of Alibaba, an easy-to-use dynamic service discovery, conf
 
 Apache RocketMQ™ is an open source distributed messaging and streaming data platform.
 
+**Dubbo**
+
+Apache Dubbo™ is a high-performance, Java based open source RPC framework.
+
+**Seata**
+
+A distributed transaction solution with high performance and ease of use for microservices architecture.
+
 **Alibaba Cloud OSS**
 
 Alibaba Cloud Object Storage Service, An encrypted and secure cloud storage service which stores, processes and accesses massive amounts of data from anywhere in the world.
@@ -32,16 +40,7 @@ Alibaba Cloud Object Storage Service, An encrypted and secure cloud storage serv
 
 A distributed task scheduling product developed by Alibaba Middleware team. It supports both periodical tasks and tasks to be triggered at specified time points.
 
-More components will be supported by Spring Cloud Alibaba in the future, which may include but are not limited to the following: 
+**Alibaba Cloud SMS**
 
-**Dubbo**
+A messaging service that covers the globe, Alibaba SMS provides convenient, efficient, and intelligent communication capabilities that help businesses quickly contact their customers.
 
-Apache Dubbo™ (incubating) is a high-performance, Java based open source RPC framework.
-
-**Fescar**
-
-A distributed transaction solution with high performance and ease of use for microservices architecture.
-
-**Alibaba Cloud SLS**
-
-Aliyun Log Service is an all-in-one service for log-type data. It helps increase Operations & Management and operational efficiency, as well as build the processing capability to deal with massive logs.

@@ -2,38 +2,39 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-build</artifactId>
-        <version>2.0.4.RELEASE</version>
+        <version>2.1.6.RELEASE</version>
         <relativePath/>
     </parent>
 
-    <groupId>org.springframework.cloud</groupId>
+    <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-alibaba</artifactId>
-    <version>0.2.2.BUILD-SNAPSHOT</version>
+    <version>2.1.1.BUILD-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Spring Cloud Alibaba</name>
-
+    <description>Spring Cloud Alibaba</description>
+    <url>https://github.com/alibaba/spring-cloud-alibaba</url>
 
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <scm>
-        <url>https://github.com/spring-cloud-incubator/spring-cloud-alibaba</url>
+        <url>https://github.com/alibaba/spring-cloud-alibaba</url>
         <connection>
-            scm:git:git://github.com/spring-cloud-incubator/spring-cloud-alibaba.git
+            scm:git:git://github.com/alibaba/spring-cloud-alibaba.git
         </connection>
         <developerConnection>
-            scm:git:ssh://git@github.com/spring-cloud-incubator/spring-cloud-alibaba.git
+            scm:git:ssh://git@github.com/alibaba/spring-cloud-alibaba.git
         </developerConnection>
         <tag>HEAD</tag>
     </scm>
@@ -62,14 +63,19 @@
             <organization>Alibaba</organization>
             <url>https://github.com/mercyblitz</url>
         </developer>
+        <developer>
+            <name>yunzheng</name>
+            <email>yunzheng1228@gmail.com</email>
+        </developer>
     </developers>
 
     <properties>
         <!-- Dependency Versions -->
-        <spring-cloud-commons.version>2.0.2.RELEASE</spring-cloud-commons.version>
-        <spring-cloud-netflix.version>2.0.2.RELEASE</spring-cloud-netflix.version>
-        <spring-cloud-openfeign.version>2.0.2.RELEASE</spring-cloud-openfeign.version>
-        <spring-cloud-bus.version>2.0.0.RELEASE</spring-cloud-bus.version>
+        <spring-cloud-commons.version>2.1.2.RELEASE</spring-cloud-commons.version>
+        <spring-cloud-netflix.version>2.1.2.RELEASE</spring-cloud-netflix.version>
+        <spring-cloud-openfeign.version>2.1.2.RELEASE</spring-cloud-openfeign.version>
+        <spring-cloud-bus.version>2.1.2.RELEASE</spring-cloud-bus.version>
+        <spring-cloud-gateway.version>2.1.2.RELEASE</spring-cloud-gateway.version>
 
         <junit.version>4.12</junit.version>
         <javax-servlet-api>3.0</javax-servlet-api>
@@ -81,21 +87,22 @@
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
         <gmavenplus-plugin.version>1.6</gmavenplus-plugin.version>
-        <cobertura.version>2.1.1</cobertura.version>
-        <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+        <jacoco.version>0.8.3</jacoco.version>
     </properties>
 
     <modules>
         <module>spring-cloud-alibaba-dependencies</module>
         <module>spring-cloud-alibaba-sentinel</module>
         <module>spring-cloud-alibaba-sentinel-datasource</module>
+        <module>spring-cloud-alibaba-sentinel-gateway</module>
         <module>spring-cloud-alibaba-nacos-config</module>
         <module>spring-cloud-alibaba-nacos-discovery</module>
+        <module>spring-cloud-alibaba-seata</module>
         <module>spring-cloud-stream-binder-rocketmq</module>
         <module>spring-cloud-alibaba-nacos-config-server</module>
+        <module>spring-cloud-alibaba-dubbo</module>
         <module>spring-cloud-alicloud-context</module>
         <module>spring-cloud-alibaba-examples</module>
-        <module>spring-cloud-alibaba-test</module>
         <module>spring-cloud-alibaba-docs</module>
         <module>spring-cloud-starter-alibaba</module>
         <module>spring-cloud-starter-alicloud</module>
@@ -104,13 +111,23 @@
         <module>spring-cloud-alicloud-ans</module>
         <module>spring-cloud-alicloud-schedulerx</module>
         <module>spring-cloud-alicloud-sms</module>
+        <module>spring-cloud-alibaba-coverage</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
 
+            <!-- Spring Boot -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
@@ -155,12 +172,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
-                <groupId>net.sourceforge.cobertura</groupId>
-                <artifactId>cobertura-runtime</artifactId>
-                <version>${cobertura.version}</version>
-                <scope>provided</scope>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-gateway-dependencies</artifactId>
+                <version>${spring-cloud-gateway.version}</version>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -169,8 +187,9 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -196,39 +215,11 @@
                     <reuseForks>false</reuseForks>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>${cobertura-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.ow2.asm</groupId>
-                        <artifactId>asm</artifactId>
-                        <version>5.0.3</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <quiet>true</quiet>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <check/>
-                    <check />
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>cobertura</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
     <profiles>
+
         <profile>
             <id>spring</id>
             <repositories>
@@ -290,6 +281,9 @@
                 </pluginRepository>
             </pluginRepositories>
         </profile>
+
     </profiles>
+
+
 
 </project>

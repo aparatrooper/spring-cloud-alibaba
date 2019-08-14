@@ -1,39 +1,15 @@
-== Spring Cloud Alibaba Cloud SMS
+== Spring Cloud AliCloud SMS
 
 短信服务（Short Message Service）是阿里云为用户提供的一种通信服务的能力。 Spring Cloud AliCloud SMS 实现了与 SMS 的简单集成，提供更为简单易用的 API，可以基于 Spring Cloud Alibaba SMS 来快速的接入阿里云的 SMS 服务。
 
 === 如何引入 Spring Cloud AliCloud SMS
 
-Spring Cloud Alibaba 已经发布了 0.2.2.BUILD-SNAPSHOT 版本，需要首先导入依赖管理 POM。
-
-[source,xml]
-----
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>Finchley.SR2</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-            <version>0.2.2.BUILD-SNAPSHOT</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-----
-
-接下来引入 Spring Cloud AliCloud SMS Starter 即可。
+如果要在您的项目中引入 SMS，使用 group ID 为 `com.alibaba.cloud` 和 artifact ID 为 `spring-cloud-starter-alicloud-sms` 的 starter。
 
 [source,xml]
 ----
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
+    <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alicloud-sms</artifactId>
 </dependency>
 ----
@@ -55,7 +31,7 @@ access-key 和 secret-key 是阿里云账号的 AK/SK，需要首先注册阿里
 
 ==== 引入 SMS API
 
-Spring Cloud Alicloud SMS 中的 SMS API 基于阿里云官方 SMS SDK 提供，具备单个短信发送、多个短信批量发送、短信查询、短信消息(`短信回执消息` 和 `上行短信消息`) 类行操作API。
+Spring Cloud Alicloud SMS 中的 SMS API 基于阿里云官方 SMS SDK ,提供具备单个短信发送、多个短信批量发送、短信查询、短信消息(`短信回执消息` 和 `上行短信消息`) 类型操作API。
 
 一个简单的使用 SMS API 发送短信的应用如下。
 
