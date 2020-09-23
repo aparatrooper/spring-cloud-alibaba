@@ -43,12 +43,10 @@
 	1. 直接下载：[Nacos Server 下载页](https://github.com/alibaba/nacos/releases) 
 	2. 源码构建：进入 Nacos [Github 项目页面](https://github.com/alibaba/nacos)，将代码 git clone 到本地自行编译打包，[参考此文档](https://nacos.io/zh-cn/docs/quick-start.html)。
 	
-
-
 2. 启动 Server，进入下载到本地并解压完成后的文件夹(使用源码构建的方式则进入编译打包好的文件夹)，再进去其相对文件夹 nacos/bin，并对照操作系统实际情况执行如下命令。[详情参考此文档](https://nacos.io/zh-cn/docs/quick-start.html)。
 	
 	1. Linux/Unix/Mac 操作系统，执行命令 `sh startup.sh -m standalone`
-	1. Windows 操作系统，执行命令 `cmd startup.cmd`
+	2. Windows 操作系统，执行命令 `cmd startup.cmd`
 
 3. 在命令行执行如下命令，向 Nacos Server 中添加一条配置。
 	
@@ -177,7 +175,7 @@ AccessKey|spring.cloud.nacos.config.access-key||
 SecretKey|spring.cloud.nacos.config.secret-key||
 相对路径|spring.cloud.nacos.config.context-path||服务端 API 的相对路径
 接入点|spring.cloud.nacos.config.endpoint|UTF-8|地域的某个服务的入口域名，通过此域名可以动态地拿到服务端地址
-是否开启监听和自动刷新|spring.cloud.nacos.config.refresh.enabled|true|
+是否开启监听和自动刷新|spring.cloud.nacos.config.refresh-enabled|true|
 
 
 

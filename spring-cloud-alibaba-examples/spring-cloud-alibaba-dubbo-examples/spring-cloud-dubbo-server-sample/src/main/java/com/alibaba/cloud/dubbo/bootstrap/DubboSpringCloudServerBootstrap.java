@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 the original author or authors.
+ * Copyright 2013-2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.alibaba.cloud.dubbo.bootstrap;
 
-import org.apache.dubbo.config.annotation.Service;
+import com.alibaba.cloud.dubbo.service.EchoService;
+import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-import com.alibaba.cloud.dubbo.service.EchoService;
-
 /**
- * Dubbo Spring Cloud Server Bootstrap
+ * Dubbo Spring Cloud Server Bootstrap.
+ *
+ * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  */
 @EnableDiscoveryClient
 @EnableAutoConfiguration
@@ -32,13 +35,15 @@ public class DubboSpringCloudServerBootstrap {
 	public static void main(String[] args) {
 		SpringApplication.run(DubboSpringCloudServerBootstrap.class);
 	}
+
 }
 
-@Service
+@DubboService
 class EchoServiceImpl implements EchoService {
 
 	@Override
 	public String echo(String message) {
 		return "[echo] Hello, " + message;
 	}
+
 }
